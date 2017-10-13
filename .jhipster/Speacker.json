@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "bio",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "qualifications",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "company",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170627103128",
+    "entityTableName": "speaker",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}
