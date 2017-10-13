@@ -86,7 +86,7 @@ public class SpeackerResource {
     public List<Speacker> getAllSpeackers() {
         log.debug("REST request to get all Speackers");
         return speackerRepository.findAll();
-    }
+        }
 
     /**
      * GET  /speackers/:id : get the "id" speacker.

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { SERVER_API_URL } from '../../app.constants';
 
 import { Speacker } from './speacker.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
@@ -8,27 +9,30 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 @Injectable()
 export class SpeackerService {
 
-    private resourceUrl = 'api/speackers';
+    private resourceUrl = SERVER_API_URL + 'api/speackers';
 
     constructor(private http: Http) { }
 
     create(speacker: Speacker): Observable<Speacker> {
         const copy = this.convert(speacker);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
     update(speacker: Speacker): Observable<Speacker> {
         const copy = this.convert(speacker);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
     find(id: number): Observable<Speacker> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
@@ -44,9 +48,24 @@ export class SpeackerService {
 
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
-        return new ResponseWrapper(res.headers, jsonResponse, res.status);
+        const result = [];
+        for (let i = 0; i < jsonResponse.length; i++) {
+            result.push(this.convertItemFromServer(jsonResponse[i]));
+        }
+        return new ResponseWrapper(res.headers, result, res.status);
     }
 
+    /**
+     * Convert a returned JSON object to Speacker.
+     */
+    private convertItemFromServer(json: any): Speacker {
+        const entity: Speacker = Object.assign(new Speacker(), json);
+        return entity;
+    }
+
+    /**
+     * Convert a Speacker to a JSON which can be sent to the server.
+     */
     private convert(speacker: Speacker): Speacker {
         const copy: Speacker = Object.assign({}, speacker);
         return copy;

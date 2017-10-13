@@ -33,6 +33,7 @@ public class Speacker implements Serializable {
     @Column(name = "company")
     private String company;
 
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -79,6 +80,7 @@ public class Speacker implements Serializable {
     public void setCompany(String company) {
         this.company = company;
     }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

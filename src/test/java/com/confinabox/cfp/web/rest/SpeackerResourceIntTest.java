@@ -69,7 +69,7 @@ public class SpeackerResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        SpeackerResource speackerResource = new SpeackerResource(speackerRepository);
+        final SpeackerResource speackerResource = new SpeackerResource(speackerRepository);
         this.restSpeackerMockMvc = MockMvcBuilders.standaloneSetup(speackerResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -129,7 +129,7 @@ public class SpeackerResourceIntTest {
             .content(TestUtil.convertObjectToJsonBytes(speacker)))
             .andExpect(status().isBadRequest());
 
-        // Validate the Alice in the database
+        // Validate the Speacker in the database
         List<Speacker> speackerList = speackerRepository.findAll();
         assertThat(speackerList).hasSize(databaseSizeBeforeCreate);
     }
