@@ -1,0 +1,23 @@
+{
+    "cfpApp": {
+        "speacker" : {
+            "home": {
+                "title": "Speackers",
+                "createLabel": "Créer un nouveau Speacker",
+                "createOrEditLabel": "Créer ou éditer un Speacker"
+            },
+            "created": "Un nouveau Speacker a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Speacker avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Speacker avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Speacker {{ id }} ?"
+            },
+            "detail": {
+                "title": "Speacker"
+            },
+            "bio": "Bio",
+            "qualifications": "Qualifications",
+            "company": "Company"
+        }
+    }
+}

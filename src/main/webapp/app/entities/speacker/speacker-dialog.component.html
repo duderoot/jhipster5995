@@ -1,0 +1,40 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySpeackerLabel" jhiTranslate="cfpApp.speacker.home.createOrEditLabel">Create or edit a Speacker</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!speacker.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="speacker.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="cfpApp.speacker.bio" for="field_bio">Bio</label>
+            <textarea class="form-control" name="bio" id="field_bio"
+                [(ngModel)]="speacker.bio"  ></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="cfpApp.speacker.qualifications" for="field_qualifications">Qualifications</label>
+            <textarea class="form-control" name="qualifications" id="field_qualifications"
+                [(ngModel)]="speacker.qualifications"  ></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="cfpApp.speacker.company" for="field_company">Company</label>
+            <input type="text" class="form-control" name="company" id="field_company"
+                [(ngModel)]="speacker.company"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
